@@ -1,4 +1,4 @@
-import User from "../users/user.model.js";
+import User from "../Users/user.model.js";
 import { encrypt,checkPassword } from "../../utils/encrypt.js";
 import { generateJwt } from "../../utils/jwt.js";
 import { Schema } from "mongoose";
