@@ -45,7 +45,6 @@ const userSchema = Schema(
         },
         status:{
             type:Boolean,
-            required:[true,'Status is required']
         }
     },
     {

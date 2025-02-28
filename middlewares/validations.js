@@ -23,7 +23,7 @@ export const productValidator=[
     body('description','Description cannot be empty').notEmpty().isLength({max:200}),
     body('stock','Stock cannot be empty').notEmpty(),
     body('price','Price cannot be empty').notEmpty(),
-    body('category','Category cannot be empty').notEmpty().isArray({max:2}).withMessage('Cant overcome more than 2 categories').custom(existCategory),
+    body('category','Category cannot be empty').notEmpty().custom(existCategory),
     validateErrors
 ]
 export const updateProductValidator=[
@@ -32,11 +32,15 @@ export const updateProductValidator=[
     body('stock','Stock cannot be empty').optional().notEmpty(),
     body('sales','Sales cannot be empty').optional().notEmpty(),
     body('price','Price cannot be empty').optional().notEmpty(),
-    body('category','Category cannot be empty').optional().notEmpty().isArray({max:2}).withMessage('Cant overcome more than 2 categories').custom(existCategory),
+    body('category','Category cannot be empty').optional().notEmpty().custom(existCategory),
     validateErrors
 ]
 
 export const categoryValidator=[
     body('name','Category Name is required').notEmpty().custom(uniqueCategory),
+    validateErrors
+]
+export const updatedCategoryValidator=[
+    body('name','Category Name is required').optional().notEmpty().custom(uniqueCategory),
     validateErrors
 ]

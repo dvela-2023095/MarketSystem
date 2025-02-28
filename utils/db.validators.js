@@ -24,12 +24,11 @@ export const existProduct = async(name)=>{
     }
 }
 export const existCategory = async(id)=>{
-    if(id[0]===id[1]) throw new Error('Cant save the same category two times');
-    
-    for(let i = 0;i<id.length;i++){
-        if(!isValidObjectId(id[i])) throw new Error('Invalid object id')
-            let product = await Category.findById(id[i])
-            if(!product) throw new Error(`Category ${id[i]} not found`)
+    let exist = await Category.findById(id)
+    if(!exist){
+        console.error(`Category not found`)
+        throw new Error('Category not found');
+        
     }
 }
 export const uniqueCategory = async(name)=>{

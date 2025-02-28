@@ -20,17 +20,14 @@ export const login = async(req,res)=>{
     try {
         let { username,password } = req.body
         let user = await User.findOne({username})
+        if(user.role === false) return res.send({succcess:false,message:'User deleted'})
         if(user && await checkPassword(user.password, password)){
             let loggedUser={
                 uid: user._id,
                 username: user.username,
                 name:user.name,
                 role:user.role,
-                shopCart:[{
-                    product:{type:Schema.Types.ObjectId},
-                    amount:{type:Number},
-                    subtotal:{type:Number}
-                }]
+                shopCart:[]
             }
             let token =await generateJwt(loggedUser)
             return res.send({message: `Welcome ${user.name}`, loggedUser, token})

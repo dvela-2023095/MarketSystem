@@ -26,12 +26,9 @@ const productSchema = Schema(
             required:[true, 'Sales are required']
         },
         category:{
-            type:[
-                {
-                    type:Schema.Types.ObjectId,
-                    ref:'Category'
-                }
-            ]
+            type:Schema.Types.ObjectId,
+            ref:'Category',
+            required:[true,'Category is required']
         }
     },
     {

@@ -4,8 +4,10 @@ import morgan from 'morgan'
 import helmet from 'helmet' 
 import cors from 'cors'
 import adminRouthes from '../src/admin/admin.routes.js'
-import authRoutes from '../src/auth/auth.routes.js'
-import clientRoutes from '../src/client/client.routes.js'
+import authRouthes from '../src/auth/auth.routes.js'
+import clientRouthes from '../src/client/client.routes.js'
+import categoryRouthes from '../src/category/category.routes.js'
+import productRouthes from '../src/products/product.routes.js'
 const configs = (app)=>{
     app.use(express.json())
     app.use(express.urlencoded({extended: true}))
@@ -16,8 +18,10 @@ const configs = (app)=>{
 
  const routes = (app)=>{
     app.use('/v1/admin',adminRouthes)
-    app.use('/v1',authRoutes)
-    app.use('/v1/client',clientRoutes)
+    app.use('/v1',authRouthes)
+    app.use('/v1/client',clientRouthes)
+    app.use('/v1/category',categoryRouthes)
+    app.use('/v1/product',productRouthes)
 }
 export const initServer = ()=>{
     const app = express()
