@@ -1,6 +1,6 @@
 import { Schema,model } from "mongoose";
 
-const billModel = Schema(
+const billSchema = Schema(
     {
         client:{
             type: Schema.Types.ObjectId,
@@ -34,3 +34,5 @@ const billModel = Schema(
         timestamps: true
     }
 )
+
+export default model('Bill',billSchema)

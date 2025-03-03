@@ -3,11 +3,13 @@ import express from 'express'
 import morgan from 'morgan'
 import helmet from 'helmet' 
 import cors from 'cors'
-import adminRouthes from '../src/admin/admin.routes.js'
-import authRouthes from '../src/auth/auth.routes.js'
-import clientRouthes from '../src/client/client.routes.js'
-import categoryRouthes from '../src/category/category.routes.js'
-import productRouthes from '../src/products/product.routes.js'
+import adminRoutes from '../src/admin/admin.routes.js'
+import authRoutes from '../src/auth/auth.routes.js'
+import clientRoutes from '../src/client/client.routes.js'
+import categoryRoutes from '../src/category/category.routes.js'
+import productRoutes from '../src/products/product.routes.js'
+import shopCartRoutes from '../src/shopCart/shop.cart.routes.js'
+import billRoutes from '../src/bill/bill.routes.js'
 const configs = (app)=>{
     app.use(express.json())
     app.use(express.urlencoded({extended: true}))
@@ -17,11 +19,13 @@ const configs = (app)=>{
 }
 
  const routes = (app)=>{
-    app.use('/v1/admin',adminRouthes)
-    app.use('/v1',authRouthes)
-    app.use('/v1/client',clientRouthes)
-    app.use('/v1/category',categoryRouthes)
-    app.use('/v1/product',productRouthes)
+    app.use('/v1/admin',adminRoutes)
+    app.use('/v1',authRoutes)
+    app.use('/v1/client',clientRoutes)
+    app.use('/v1/category',categoryRoutes)
+    app.use('/v1/product',productRoutes)
+    app.use('/v1/shopCart',shopCartRoutes)
+    app.use('/v1/bill',billRoutes)
 }
 export const initServer = ()=>{
     const app = express()

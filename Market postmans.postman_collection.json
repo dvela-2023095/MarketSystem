@@ -11,9 +11,487 @@
 			"name": "Funciones Cliente",
 			"item": [
 				{
-					"name": "Ver productos",
+					"name": "Productos",
+					"item": [
+						{
+							"name": "Ver productos",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "authorization",
+										"value": "{{token}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://localhost:2636/v1/client/products",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "2636",
+									"path": [
+										"v1",
+										"client",
+										"products"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Encontrar por nombre",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "authorization",
+										"value": "{{token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "productName",
+											"value": "papa",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "http://localhost:2636/v1/client/find-products",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "2636",
+									"path": [
+										"v1",
+										"client",
+										"find-products"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Explorar Categorias",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "authorization",
+										"value": "{{token}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://localhost:2636/v1/client/categories",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "2636",
+									"path": [
+										"v1",
+										"client",
+										"categories"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Buscar por categoria",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "authorization",
+										"value": "{{token}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://localhost:2636/v1/client/products/67c237eec48e3b44699f9fd8",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "2636",
+									"path": [
+										"v1",
+										"client",
+										"products",
+										"67c237eec48e3b44699f9fd8"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Carrito",
+					"item": [
+						{
+							"name": "Agregar Al Carrito",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "authorization",
+										"value": "{{token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "product",
+											"value": "67c513d4f0d1ee9332a1124b",
+											"type": "text"
+										},
+										{
+											"key": "amount",
+											"value": "3",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "http://localhost:2636/v1/shopCart/add-to-cart",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "2636",
+									"path": [
+										"v1",
+										"shopCart",
+										"add-to-cart"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Actualizar Cantidad",
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "authorization",
+										"value": "{{token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "product",
+											"value": "67c513d4f0d1ee9332a1124b",
+											"type": "text"
+										},
+										{
+											"key": "amount",
+											"value": "10",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "http://localhost:2636/v1/shopCart/update-amount",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "2636",
+									"path": [
+										"v1",
+										"shopCart",
+										"update-amount"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Eliminar del Carrito",
+							"request": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "authorization",
+										"value": "{{token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "product",
+											"value": "67c513d4f0d1ee9332a1124b",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "http://localhost:2636/v1/shopCart/delete",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "2636",
+									"path": [
+										"v1",
+										"shopCart",
+										"delete"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Ver carrito",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "authorization",
+										"value": "{{token}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://localhost:2636/v1/shopCart/see",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "2636",
+									"path": [
+										"v1",
+										"shopCart",
+										"see"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Factura",
+					"item": [
+						{
+							"name": "Confirmar compra",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "authorization",
+										"value": "{{token}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://localhost:2636/v1/bill/add",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "2636",
+									"path": [
+										"v1",
+										"bill",
+										"add"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Ver historial de compras",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "authorization",
+										"value": "{{token}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://localhost:2636/v1/bill/get",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "2636",
+									"path": [
+										"v1",
+										"bill",
+										"get"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Registros y login",
+					"item": [
+						{
+							"name": "Registrarse",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Successful POST request\", function () {",
+											"    pm.expect(pm.response.code).to.be.oneOf([200, 201]);",
+											"});",
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "name",
+											"value": "Denis",
+											"type": "text"
+										},
+										{
+											"key": "surname",
+											"value": "Alfredo",
+											"type": "text"
+										},
+										{
+											"key": "email",
+											"value": "dvela@gmail.com",
+											"type": "text"
+										},
+										{
+											"key": "username",
+											"value": "dvela",
+											"type": "text"
+										},
+										{
+											"key": "password",
+											"value": "ElGato1234@",
+											"type": "text"
+										},
+										{
+											"key": "phone",
+											"value": "45609064",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "http://localhost:2636/v1/register",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "2636",
+									"path": [
+										"v1",
+										"register"
+									]
+								},
+								"description": "This is a POST request, submitting data to an API via the request body. This request submits JSON data, and the data is reflected in the response.\n\nA successful POST request typically returns a `200 OK` or `201 Created` response code."
+							},
+							"response": []
+						},
+						{
+							"name": "Login (Cliente)",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"var data =JSON.parse(responseBody);\r",
+											"postman.setGlobalVariable(\"token\",data.token)"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "username",
+											"value": "dvela",
+											"type": "text"
+										},
+										{
+											"key": "password",
+											"value": "ElGato1234@",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "http://localhost:2636/v1/login",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "2636",
+									"path": [
+										"v1",
+										"login"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Editar perfil",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Successful PUT request\", function () {",
+									"    pm.expect(pm.response.code).to.be.oneOf([200, 201, 204]);",
+									"});",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
 					"request": {
-						"method": "GET",
+						"method": "PUT",
 						"header": [
 							{
 								"key": "authorization",
@@ -21,8 +499,28 @@
 								"type": "text"
 							}
 						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "password",
+									"value": "Hola123",
+									"type": "text"
+								},
+								{
+									"key": "name",
+									"value": "Denis Alfredo",
+									"type": "text"
+								},
+								{
+									"key": "role",
+									"value": "JAJAJAJA",
+									"type": "text"
+								}
+							]
+						},
 						"url": {
-							"raw": "http://localhost:2636/v1/client/products",
+							"raw": "http://localhost:2636/v1/client/change-profile",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -31,14 +529,57 @@
 							"path": [
 								"v1",
 								"client",
-								"products"
+								"change-profile"
+							]
+						},
+						"description": "This is a PUT request and it is used to overwrite an existing piece of data. For instance, after you create an entity with a POST request, you may want to modify that later. You can do that using a PUT request. You typically identify the entity being updated by including an identifier in the URL (eg. `id=1`).\n\nA successful PUT request typically returns a `200 OK`, `201 Created`, or `204 No Content` response code."
+					},
+					"response": []
+				},
+				{
+					"name": "Cambiar password",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "oldPassword",
+									"value": "ElGato1234@",
+									"type": "text"
+								},
+								{
+									"key": "newPassword",
+									"value": "DeniS1234@",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:2636/v1/client/change-password",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "2636",
+							"path": [
+								"v1",
+								"client",
+								"change-password"
 							]
 						}
 					},
 					"response": []
 				},
 				{
-					"name": "Encontrar por nombre",
+					"name": "Eliminar Perfil",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
 					},
@@ -55,14 +596,20 @@
 							"mode": "urlencoded",
 							"urlencoded": [
 								{
-									"key": "productName",
-									"value": "papa",
+									"key": "password",
+									"value": "DeniS1234@",
 									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "ElGato1234@",
+									"type": "text",
+									"disabled": true
 								}
 							]
 						},
 						"url": {
-							"raw": "http://localhost:2636/v1/client/findProducts",
+							"raw": "http://localhost:2636/v1/client/delete-profile",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -71,7 +618,42 @@
 							"path": [
 								"v1",
 								"client",
-								"findProducts"
+								"delete-profile"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ConfirmarEliminacion",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "PUT",
+						"header": [
+							{
+								"key": "authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": []
+						},
+						"url": {
+							"raw": "http://localhost:2636/v1/client/confirm-delete/67af56aa394c3b0e4050227e",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "2636",
+							"path": [
+								"v1",
+								"client",
+								"confirm-delete",
+								"67af56aa394c3b0e4050227e"
 							]
 						}
 					},
@@ -80,801 +662,812 @@
 			]
 		},
 		{
-			"name": "Obtener Usuarios(Admin)",
-			"event": [
+			"name": "Funciones ADMIN",
+			"item": [
 				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"pm.test(\"Status code is 200\", function () {",
-							"    pm.response.to.have.status(200);",
-							"});"
-						],
-						"type": "text/javascript",
-						"packages": {}
-					}
-				}
-			],
-			"request": {
-				"method": "GET",
-				"header": [
-					{
-						"key": "authorization",
-						"value": "{{token}}",
-						"type": "text"
-					}
-				],
-				"url": {
-					"raw": "http://localhost:2636/v1/admin/users",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "2636",
-					"path": [
-						"v1",
-						"admin",
-						"users"
+					"name": "Usuarios",
+					"item": [
+						{
+							"name": "Obtener Usuarios(Admin)",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {",
+											"    pm.response.to.have.status(200);",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "authorization",
+										"value": "{{token}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://localhost:2636/v1/admin/users",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "2636",
+									"path": [
+										"v1",
+										"admin",
+										"users"
+									]
+								},
+								"description": "This is a GET request and it is used to \"get\" data from an endpoint. There is no request body for a GET request, but you can use query parameters to help specify the resource you want data on (e.g., in this request, we have `id=1`).\n\nA successful GET response will have a `200 OK` status, and should include some kind of response body - for example, HTML web content or JSON data."
+							},
+							"response": []
+						},
+						{
+							"name": "Buscar Usuario(Admin)",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {",
+											"    pm.response.to.have.status(200);",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "authorization",
+										"value": "{{token}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://localhost:2636/v1/admin/get-user/67af596adc325a37e7d97616",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "2636",
+									"path": [
+										"v1",
+										"admin",
+										"get-user",
+										"67af596adc325a37e7d97616"
+									]
+								},
+								"description": "This is a GET request and it is used to \"get\" data from an endpoint. There is no request body for a GET request, but you can use query parameters to help specify the resource you want data on (e.g., in this request, we have `id=1`).\n\nA successful GET response will have a `200 OK` status, and should include some kind of response body - for example, HTML web content or JSON data."
+							},
+							"response": []
+						},
+						{
+							"name": "Agregar Usuario (Admin)",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Successful POST request\", function () {",
+											"    pm.expect(pm.response.code).to.be.oneOf([200, 201]);",
+											"});",
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "authorization",
+										"value": "{{token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "name",
+											"value": "Jose",
+											"type": "text"
+										},
+										{
+											"key": "surname",
+											"value": "Pinto",
+											"type": "text"
+										},
+										{
+											"key": "username",
+											"value": "chewi2",
+											"type": "text"
+										},
+										{
+											"key": "email",
+											"value": "chewi@gmail.com",
+											"type": "text"
+										},
+										{
+											"key": "password",
+											"value": "ChewI1234@",
+											"type": "text"
+										},
+										{
+											"key": "phone",
+											"value": "45678998",
+											"type": "text"
+										},
+										{
+											"key": "role",
+											"value": "CLIENT",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "http://localhost:2636/v1/admin/add-user",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "2636",
+									"path": [
+										"v1",
+										"admin",
+										"add-user"
+									]
+								},
+								"description": "This is a POST request, submitting data to an API via the request body. This request submits JSON data, and the data is reflected in the response.\n\nA successful POST request typically returns a `200 OK` or `201 Created` response code."
+							},
+							"response": []
+						},
+						{
+							"name": "Actualizar Usuario(Admin)",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Successful PUT request\", function () {",
+											"    pm.expect(pm.response.code).to.be.oneOf([200, 201, 204]);",
+											"});",
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "authorization",
+										"value": "{{token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "password",
+											"value": "Hola123",
+											"type": "text"
+										},
+										{
+											"key": "name",
+											"value": "Denis Alfredo",
+											"type": "text"
+										},
+										{
+											"key": "role",
+											"value": "JAJAJAJA",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "http://localhost:2636/v1/admin/update-profile",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "2636",
+									"path": [
+										"v1",
+										"admin",
+										"update-profile"
+									]
+								},
+								"description": "This is a PUT request and it is used to overwrite an existing piece of data. For instance, after you create an entity with a POST request, you may want to modify that later. You can do that using a PUT request. You typically identify the entity being updated by including an identifier in the URL (eg. `id=1`).\n\nA successful PUT request typically returns a `200 OK`, `201 Created`, or `204 No Content` response code."
+							},
+							"response": []
+						},
+						{
+							"name": "Eliminar Usuario(Admin)",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Successful DELETE request\", function () {",
+											"    pm.expect(pm.response.code).to.be.oneOf([200, 202, 204]);",
+											"});",
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "authorization",
+										"value": "{{token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "adminPassword",
+											"value": "ElGato1234@",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "http://localhost:2636/v1/admin/delete-user/67a88166365646fd7ca2f8b7",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "2636",
+									"path": [
+										"v1",
+										"admin",
+										"delete-user",
+										"67a88166365646fd7ca2f8b7"
+									]
+								},
+								"description": "This is a DELETE request, and it is used to delete data that was previously created via a POST request. You typically identify the entity being updated by including an identifier in the URL (eg. `id=1`).\n\nA successful DELETE request typically returns a `200 OK`, `202 Accepted`, or `204 No Content` response code."
+							},
+							"response": []
+						},
+						{
+							"name": "Cambiar rol",
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "authorization",
+										"value": "{{token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "role",
+											"value": "ADMIN",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "http://localhost:2636/v1/admin/change-rol/67c23460dfc5ea83020f0574",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "2636",
+									"path": [
+										"v1",
+										"admin",
+										"change-rol",
+										"67c23460dfc5ea83020f0574"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Cambiar password",
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "authorization",
+										"value": "{{token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "oldPassword",
+											"value": "ElGoat123@",
+											"type": "text"
+										},
+										{
+											"key": "newPassword",
+											"value": "ElGoat321@",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "http://localhost:2636/v1/admin/change-password",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "2636",
+									"path": [
+										"v1",
+										"admin",
+										"change-password"
+									]
+								}
+							},
+							"response": []
+						}
 					]
 				},
-				"description": "This is a GET request and it is used to \"get\" data from an endpoint. There is no request body for a GET request, but you can use query parameters to help specify the resource you want data on (e.g., in this request, we have `id=1`).\n\nA successful GET response will have a `200 OK` status, and should include some kind of response body - for example, HTML web content or JSON data."
-			},
-			"response": []
-		},
-		{
-			"name": "Buscar Usuario(Admin)",
-			"event": [
 				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"pm.test(\"Status code is 200\", function () {",
-							"    pm.response.to.have.status(200);",
-							"});"
-						],
-						"type": "text/javascript",
-						"packages": {}
-					}
-				}
-			],
-			"request": {
-				"method": "GET",
-				"header": [
-					{
-						"key": "authorization",
-						"value": "{{token}}",
-						"type": "text"
-					}
-				],
-				"url": {
-					"raw": "http://localhost:2636/v1/admin/getUser/67af596adc325a37e7d97616",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "2636",
-					"path": [
-						"v1",
-						"admin",
-						"getUser",
-						"67af596adc325a37e7d97616"
+					"name": "Productos",
+					"item": [
+						{
+							"name": "Listar Productos(Admin)",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "authorization",
+										"value": "{{token}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://localhost:2636/v1/product/",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "2636",
+									"path": [
+										"v1",
+										"product",
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "BuscarProducto(Admin)",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "authorization",
+										"value": "{{token}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://localhost:2636/v1/product/get/67a8a0f849651b830b6a196c",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "2636",
+									"path": [
+										"v1",
+										"product",
+										"get",
+										"67a8a0f849651b830b6a196c"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "AgregarProducto(Admin)",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "authorization",
+										"value": "{{token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "name",
+											"value": "Patatas",
+											"type": "text"
+										},
+										{
+											"key": "description",
+											"value": "Papas de 150g marca Lays sabor tradicional",
+											"type": "text"
+										},
+										{
+											"key": "stock",
+											"value": "100",
+											"type": "text"
+										},
+										{
+											"key": "category",
+											"value": "67c237eec48e3b44699f9fd8",
+											"type": "text"
+										},
+										{
+											"key": "price",
+											"value": "10.00",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "http://localhost:2636/v1/product/add",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "2636",
+									"path": [
+										"v1",
+										"product",
+										"add"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "ActualizarProducto(Admin)",
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "authorization",
+										"value": "{{token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "category",
+											"value": "67c237eec48e3b44699f9fd8",
+											"type": "text"
+										},
+										{
+											"key": "name",
+											"value": "Papalinas",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "http://localhost:2636/v1/product/update/67c23ae3d36ac80d11bada5c",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "2636",
+									"path": [
+										"v1",
+										"product",
+										"update",
+										"67c23ae3d36ac80d11bada5c"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Eliminar Producto(Admin)",
+							"request": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "authorization",
+										"value": "{{token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": []
+								},
+								"url": {
+									"raw": "http://localhost:2636/v1/product/delete/67a8a0f849651b830b6a196c",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "2636",
+									"path": [
+										"v1",
+										"product",
+										"delete",
+										"67a8a0f849651b830b6a196c"
+									]
+								}
+							},
+							"response": []
+						}
 					]
 				},
-				"description": "This is a GET request and it is used to \"get\" data from an endpoint. There is no request body for a GET request, but you can use query parameters to help specify the resource you want data on (e.g., in this request, we have `id=1`).\n\nA successful GET response will have a `200 OK` status, and should include some kind of response body - for example, HTML web content or JSON data."
-			},
-			"response": []
-		},
-		{
-			"name": "Agregar Usuario (Admin)",
-			"event": [
 				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"pm.test(\"Successful POST request\", function () {",
-							"    pm.expect(pm.response.code).to.be.oneOf([200, 201]);",
-							"});",
-							""
-						],
-						"type": "text/javascript",
-						"packages": {}
-					}
-				}
-			],
-			"request": {
-				"method": "POST",
-				"header": [
-					{
-						"key": "authorization",
-						"value": "{{token}}",
-						"type": "text"
-					}
-				],
-				"body": {
-					"mode": "urlencoded",
-					"urlencoded": [
+					"name": "Categorias",
+					"item": [
 						{
-							"key": "name",
-							"value": "Jose",
-							"type": "text"
+							"name": "AgregarCategoria(Admin)",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "authorization",
+										"value": "{{token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "name",
+											"value": "Alimentos ",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "http://localhost:2636/v1/category/add",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "2636",
+									"path": [
+										"v1",
+										"category",
+										"add"
+									]
+								}
+							},
+							"response": []
 						},
 						{
-							"key": "surname",
-							"value": "Pinto",
-							"type": "text"
+							"name": "Listar Categorias(Admin)",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "authorization",
+										"value": "{{token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "name",
+											"value": "Frituras",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "http://localhost:2636/v1/category/",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "2636",
+									"path": [
+										"v1",
+										"category",
+										""
+									]
+								}
+							},
+							"response": []
 						},
 						{
-							"key": "username",
-							"value": "chewi2",
-							"type": "text"
+							"name": "Buscar Categoria(Admin)",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "authorization",
+										"value": "{{token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "name",
+											"value": "Frituras",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "http://localhost:2636/v1/category/get/67a8a0d749651b830b6a1967",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "2636",
+									"path": [
+										"v1",
+										"category",
+										"get",
+										"67a8a0d749651b830b6a1967"
+									]
+								}
+							},
+							"response": []
 						},
 						{
-							"key": "email",
-							"value": "chewi@gmail.com",
-							"type": "text"
+							"name": "Editar Categoria(Admin)",
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "authorization",
+										"value": "{{token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "name",
+											"value": "Frituras",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "http://localhost:2636/v1/category/update/67a8acdd5e2920f990ca6dcd",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "2636",
+									"path": [
+										"v1",
+										"category",
+										"update",
+										"67a8acdd5e2920f990ca6dcd"
+									]
+								}
+							},
+							"response": []
 						},
 						{
-							"key": "password",
-							"value": "ChewI1234@",
-							"type": "text"
-						},
-						{
-							"key": "phone",
-							"value": "45678998",
-							"type": "text"
-						},
-						{
-							"key": "role",
-							"value": "CLIENT",
-							"type": "text"
+							"name": "Eliminar Categoria(Admin)",
+							"request": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "authorization",
+										"value": "{{token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": []
+								},
+								"url": {
+									"raw": "http://localhost:2636/v1/category/delete/67a8a889f68f8aebacf4058b",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "2636",
+									"path": [
+										"v1",
+										"category",
+										"delete",
+										"67a8a889f68f8aebacf4058b"
+									]
+								}
+							},
+							"response": []
 						}
 					]
 				},
-				"url": {
-					"raw": "http://localhost:2636/v1/admin/addUser",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "2636",
-					"path": [
-						"v1",
-						"admin",
-						"addUser"
-					]
-				},
-				"description": "This is a POST request, submitting data to an API via the request body. This request submits JSON data, and the data is reflected in the response.\n\nA successful POST request typically returns a `200 OK` or `201 Created` response code."
-			},
-			"response": []
-		},
-		{
-			"name": "Registrarse",
-			"event": [
 				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"pm.test(\"Successful POST request\", function () {",
-							"    pm.expect(pm.response.code).to.be.oneOf([200, 201]);",
-							"});",
-							""
-						],
-						"type": "text/javascript",
-						"packages": {}
-					}
-				}
-			],
-			"request": {
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "urlencoded",
-					"urlencoded": [
+					"name": "Login ADMIN",
+					"event": [
 						{
-							"key": "name",
-							"value": "Denis",
-							"type": "text"
-						},
-						{
-							"key": "surname",
-							"value": "Alfredo",
-							"type": "text"
-						},
-						{
-							"key": "email",
-							"value": "dvela@gmail.com",
-							"type": "text"
-						},
-						{
-							"key": "username",
-							"value": "dvela",
-							"type": "text"
-						},
-						{
-							"key": "password",
-							"value": "ElGato1234@",
-							"type": "text"
-						},
-						{
-							"key": "phone",
-							"value": "45609064",
-							"type": "text"
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var data =JSON.parse(responseBody);\r",
+									"postman.setGlobalVariable(\"token\",data.token)"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
 						}
-					]
-				},
-				"url": {
-					"raw": "http://localhost:2636/v1/register",
-					"protocol": "http",
-					"host": [
-						"localhost"
 					],
-					"port": "2636",
-					"path": [
-						"v1",
-						"register"
-					]
-				},
-				"description": "This is a POST request, submitting data to an API via the request body. This request submits JSON data, and the data is reflected in the response.\n\nA successful POST request typically returns a `200 OK` or `201 Created` response code."
-			},
-			"response": []
-		},
-		{
-			"name": "Actualizar Usuario(Admin)",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"pm.test(\"Successful PUT request\", function () {",
-							"    pm.expect(pm.response.code).to.be.oneOf([200, 201, 204]);",
-							"});",
-							""
-						],
-						"type": "text/javascript",
-						"packages": {}
-					}
-				}
-			],
-			"request": {
-				"method": "PUT",
-				"header": [
-					{
-						"key": "authorization",
-						"value": "{{token}}",
-						"type": "text"
-					}
-				],
-				"body": {
-					"mode": "urlencoded",
-					"urlencoded": [
-						{
-							"key": "password",
-							"value": "Hola123",
-							"type": "text"
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "username",
+									"value": "parmas",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "ElGoat123@",
+									"type": "text"
+								}
+							]
 						},
-						{
-							"key": "name",
-							"value": "Denis Alfredo",
-							"type": "text"
-						},
-						{
-							"key": "role",
-							"value": "JAJAJAJA",
-							"type": "text"
+						"url": {
+							"raw": "http://localhost:2636/v1/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "2636",
+							"path": [
+								"v1",
+								"login"
+							]
 						}
-					]
-				},
-				"url": {
-					"raw": "http://localhost:2636/v1/admin/updateProfile",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "2636",
-					"path": [
-						"v1",
-						"admin",
-						"updateProfile"
-					]
-				},
-				"description": "This is a PUT request and it is used to overwrite an existing piece of data. For instance, after you create an entity with a POST request, you may want to modify that later. You can do that using a PUT request. You typically identify the entity being updated by including an identifier in the URL (eg. `id=1`).\n\nA successful PUT request typically returns a `200 OK`, `201 Created`, or `204 No Content` response code."
-			},
-			"response": []
-		},
-		{
-			"name": "Eliminar Usuario(Admin)",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"pm.test(\"Successful DELETE request\", function () {",
-							"    pm.expect(pm.response.code).to.be.oneOf([200, 202, 204]);",
-							"});",
-							""
-						],
-						"type": "text/javascript",
-						"packages": {}
-					}
+					},
+					"response": []
 				}
-			],
-			"request": {
-				"method": "DELETE",
-				"header": [
-					{
-						"key": "authorization",
-						"value": "{{token}}",
-						"type": "text"
-					}
-				],
-				"body": {
-					"mode": "urlencoded",
-					"urlencoded": [
-						{
-							"key": "adminPassword",
-							"value": "ElGato1234@",
-							"type": "text"
-						}
-					]
-				},
-				"url": {
-					"raw": "http://localhost:2636/v1/admin/deleteUser/67a88166365646fd7ca2f8b7",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "2636",
-					"path": [
-						"v1",
-						"admin",
-						"deleteUser",
-						"67a88166365646fd7ca2f8b7"
-					]
-				},
-				"description": "This is a DELETE request, and it is used to delete data that was previously created via a POST request. You typically identify the entity being updated by including an identifier in the URL (eg. `id=1`).\n\nA successful DELETE request typically returns a `200 OK`, `202 Accepted`, or `204 No Content` response code."
-			},
-			"response": []
-		},
-		{
-			"name": "Login",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"var data =JSON.parse(responseBody);\r",
-							"postman.setGlobalVariable(\"token\",data.token)"
-						],
-						"type": "text/javascript",
-						"packages": {}
-					}
-				}
-			],
-			"request": {
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "urlencoded",
-					"urlencoded": [
-						{
-							"key": "username",
-							"value": "dvela",
-							"type": "text"
-						},
-						{
-							"key": "password",
-							"value": "ElGato1234@",
-							"type": "text"
-						}
-					]
-				},
-				"url": {
-					"raw": "http://localhost:2636/v1/login",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "2636",
-					"path": [
-						"v1",
-						"login"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Listar Productos(Admin)",
-			"request": {
-				"method": "GET",
-				"header": [
-					{
-						"key": "authorization",
-						"value": "{{token}}",
-						"type": "text"
-					}
-				],
-				"url": {
-					"raw": "http://localhost:2636/v1/admin/products",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "2636",
-					"path": [
-						"v1",
-						"admin",
-						"products"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "BuscarProducto(Admin)",
-			"request": {
-				"method": "GET",
-				"header": [
-					{
-						"key": "authorization",
-						"value": "{{token}}",
-						"type": "text"
-					}
-				],
-				"url": {
-					"raw": "http://localhost:2636/v1/admin/getProduct/67a8a0f849651b830b6a196c",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "2636",
-					"path": [
-						"v1",
-						"admin",
-						"getProduct",
-						"67a8a0f849651b830b6a196c"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "AgregarProducto(Admin)",
-			"request": {
-				"method": "POST",
-				"header": [
-					{
-						"key": "authorization",
-						"value": "{{token}}",
-						"type": "text"
-					}
-				],
-				"body": {
-					"mode": "urlencoded",
-					"urlencoded": [
-						{
-							"key": "name",
-							"value": "Patatas",
-							"type": "text"
-						},
-						{
-							"key": "description",
-							"value": "Papas de 150g marca Lays sabor tradicional",
-							"type": "text"
-						},
-						{
-							"key": "stock",
-							"value": "100",
-							"type": "text"
-						},
-						{
-							"key": "category[]",
-							"value": "67a88fda7adb55180de182fb",
-							"type": "text"
-						},
-						{
-							"key": "category[]",
-							"value": "67a88255365646fd7ca2f8c8",
-							"type": "text",
-							"disabled": true
-						},
-						{
-							"key": "price",
-							"value": "10.00",
-							"type": "text"
-						}
-					]
-				},
-				"url": {
-					"raw": "http://localhost:2636/v1/admin/addProduct",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "2636",
-					"path": [
-						"v1",
-						"admin",
-						"addProduct"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "ActualizarProducto(Admin)",
-			"request": {
-				"method": "PUT",
-				"header": [
-					{
-						"key": "authorization",
-						"value": "{{token}}",
-						"type": "text"
-					}
-				],
-				"body": {
-					"mode": "urlencoded",
-					"urlencoded": [
-						{
-							"key": "category[]",
-							"value": "67a8a889f68f8aebacf4058b",
-							"type": "text"
-						},
-						{
-							"key": "name",
-							"value": "Papalinas\n",
-							"type": "text"
-						},
-						{
-							"key": "category[]",
-							"value": "67a88fda7adb55180de182fb",
-							"type": "text",
-							"disabled": true
-						}
-					]
-				},
-				"url": {
-					"raw": "http://localhost:2636/v1/admin/updateProduct/67a8a6314ab4d2bbb1a92c14",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "2636",
-					"path": [
-						"v1",
-						"admin",
-						"updateProduct",
-						"67a8a6314ab4d2bbb1a92c14"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Eliminar Producto(Admin)",
-			"request": {
-				"method": "DELETE",
-				"header": [
-					{
-						"key": "authorization",
-						"value": "{{token}}",
-						"type": "text"
-					}
-				],
-				"body": {
-					"mode": "urlencoded",
-					"urlencoded": []
-				},
-				"url": {
-					"raw": "http://localhost:2636/v1/admin/deleteProduct/67a8a0f849651b830b6a196c",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "2636",
-					"path": [
-						"v1",
-						"admin",
-						"deleteProduct",
-						"67a8a0f849651b830b6a196c"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "AgregarCategoria(Admin)",
-			"request": {
-				"method": "POST",
-				"header": [
-					{
-						"key": "authorization",
-						"value": "{{token}}",
-						"type": "text"
-					}
-				],
-				"body": {
-					"mode": "urlencoded",
-					"urlencoded": [
-						{
-							"key": "name",
-							"value": "Alimentos ",
-							"type": "text"
-						}
-					]
-				},
-				"url": {
-					"raw": "http://localhost:2636/v1/admin/addCategory",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "2636",
-					"path": [
-						"v1",
-						"admin",
-						"addCategory"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Listar Categorias(Admin)",
-			"protocolProfileBehavior": {
-				"disableBodyPruning": true
-			},
-			"request": {
-				"method": "GET",
-				"header": [
-					{
-						"key": "authorization",
-						"value": "{{token}}",
-						"type": "text"
-					}
-				],
-				"body": {
-					"mode": "urlencoded",
-					"urlencoded": [
-						{
-							"key": "name",
-							"value": "Frituras",
-							"type": "text"
-						}
-					]
-				},
-				"url": {
-					"raw": "http://localhost:2636/v1/admin/categories",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "2636",
-					"path": [
-						"v1",
-						"admin",
-						"categories"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Buscar Categoria(Admin)",
-			"protocolProfileBehavior": {
-				"disableBodyPruning": true
-			},
-			"request": {
-				"method": "GET",
-				"header": [
-					{
-						"key": "authorization",
-						"value": "{{token}}",
-						"type": "text"
-					}
-				],
-				"body": {
-					"mode": "urlencoded",
-					"urlencoded": [
-						{
-							"key": "name",
-							"value": "Frituras",
-							"type": "text"
-						}
-					]
-				},
-				"url": {
-					"raw": "http://localhost:2636/v1/admin/getCategory/67a8a0d749651b830b6a1967",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "2636",
-					"path": [
-						"v1",
-						"admin",
-						"getCategory",
-						"67a8a0d749651b830b6a1967"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Editar Categoria(Admin)",
-			"request": {
-				"method": "PUT",
-				"header": [
-					{
-						"key": "authorization",
-						"value": "{{token}}",
-						"type": "text"
-					}
-				],
-				"body": {
-					"mode": "urlencoded",
-					"urlencoded": [
-						{
-							"key": "name",
-							"value": "Frituras",
-							"type": "text"
-						}
-					]
-				},
-				"url": {
-					"raw": "http://localhost:2636/v1/admin/updateCategory/67a8acdd5e2920f990ca6dcd",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "2636",
-					"path": [
-						"v1",
-						"admin",
-						"updateCategory",
-						"67a8acdd5e2920f990ca6dcd"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Eliminar Categoria(Admin)",
-			"request": {
-				"method": "DELETE",
-				"header": [
-					{
-						"key": "authorization",
-						"value": "{{token}}",
-						"type": "text"
-					}
-				],
-				"body": {
-					"mode": "urlencoded",
-					"urlencoded": [
-						{
-							"key": "name",
-							"value": "Alimentos variados",
-							"type": "text"
-						}
-					]
-				},
-				"url": {
-					"raw": "http://localhost:2636/v1/admin/deleteCategory/67a8a889f68f8aebacf4058b",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "2636",
-					"path": [
-						"v1",
-						"admin",
-						"deleteCategory",
-						"67a8a889f68f8aebacf4058b"
-					]
-				}
-			},
-			"response": []
+			]
 		}
 	],
 	"event": [

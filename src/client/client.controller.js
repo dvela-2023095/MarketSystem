@@ -1,7 +1,7 @@
 import Category from "../category/category.model.js";
 import Product from "../products/product.model.js";
 import User from "../Users/user.model.js";
-
+import { checkPassword, encrypt } from "../../utils/encrypt.js";
 export const listProducts = async(req,res)=>{
     try {
         const {limit=20,skip=0} = req.query
@@ -54,22 +54,48 @@ export const productByCategory = async (req,res) => {
     }
 }
 
-export const addToShopCart = async(req,res)=>{
+export const changePassword = async(req,res)=>{
     try {
-        let {id,amount}=req.body
-        let product = await Product.findById(id)
-        if(!product) return res.send({success:false,message:'Product not found'})
-        let subtotal = product.price * amount
-        let producto = {
-            id:id,
-            amount:amount,
-            subtotal:subtotal
+        let {oldPassword,newPassword}= req.body
+        let user = await User.findById(req.user.uid)
+        if(!oldPassword || !newPassword) return res.send({success:false,message:'You must send the old and new password'})
+        if(user && await checkPassword(user.password,oldPassword)){
+            user.password = await encrypt(newPassword)
+            user.save()
+            return res.send({success:true,message:'Password changed'})
         }
-        await req.user.shopCart.push(producto)
-        let {user}=req
-        return res.send({success:true,message:'Product added to the cart'},user)
+        return res.send({success:false,message:'Wrong password'})
     } catch (error) {
         console.error(error)
-        return res.status(500).send({success:false,message:'General error adding the product to the shopcart'})
+        return res.status(500).send({success:false,message:'General error changing the password'})
+    }
+}
+
+export const deleteProfile = async(req,res)=>{
+    try {
+        let {password}=req.body
+        let user = await User.findById(req.user.uid)
+        if(!password) return res.send({success:false,message:'Need the password to delete your profile'})
+        if(user && await checkPassword(user.password,password)){
+            return res.send({success: true,message: 'Are you sure you want to delete this user?(change the method to "put")',confirmUrl: `/v1/client/confirm-delete/${user._id}`})
+        }
+        return res.status(403).send({success:false,message:'Acces denied wrong password'})
+    } catch (error) {
+        console.log(error)
+        return res.status(500).send({success:false,message:'General Error deleting the user'})
+    }
+}
+
+export const deleteConfirmed = async(req,res)=>{
+    try {
+        let {id}=req.params
+        if(id!==req.user.uid) return res.send({success:false,message:'This is not your porfile'})
+        let user = await User.findById(id)
+        user.status = false,
+        await user.save()
+        return res.send({success:true,message:'User deleted'})
+    } catch (error) {
+        console.error(error)
+        return res.status(500).send({success:false,message:'General error deleting the profile'})
     }
 }

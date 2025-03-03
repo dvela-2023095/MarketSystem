@@ -1,7 +1,6 @@
 import User from "../Users/user.model.js";
 import { encrypt,checkPassword } from "../../utils/encrypt.js";
 import { generateJwt } from "../../utils/jwt.js";
-import { Schema } from "mongoose";
 
 export const register = async(req,res)=>{
     try {
@@ -20,14 +19,13 @@ export const login = async(req,res)=>{
     try {
         let { username,password } = req.body
         let user = await User.findOne({username})
-        if(user.role === false) return res.send({succcess:false,message:'User deleted'})
+        if(user.status === false) return res.send({succcess:false,message:'This profile was deleted'})
         if(user && await checkPassword(user.password, password)){
             let loggedUser={
                 uid: user._id,
                 username: user.username,
                 name:user.name,
-                role:user.role,
-                shopCart:[]
+                role:user.role
             }
             let token =await generateJwt(loggedUser)
             return res.send({message: `Welcome ${user.name}`, loggedUser, token})
