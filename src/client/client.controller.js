@@ -99,3 +99,13 @@ export const deleteConfirmed = async(req,res)=>{
         return res.status(500).send({success:false,message:'General error deleting the profile'})
     }
 }
+export const viewProfile =async (req,res) => {
+    try {
+        let user = await User.findById(req.user.uid,'-_id name surname username email phone')
+        if(!user) return res.send({success:false,message:'User not found'})
+        return res.send({success:true,message:'Profile: ',user})
+    } catch (error) {
+        console.error(error)
+        return res.status(500).send({success:false,message:'General error showing the profile'})
+    }
+}

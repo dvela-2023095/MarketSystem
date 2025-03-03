@@ -1,6 +1,6 @@
 import { Router } from "express";
 import {  isClient, validateJwt } from "../../middlewares/validateJwt.js";
-import {  changePassword, deleteConfirmed, deleteProfile, exploreCategories, findByName, listProducts, productByCategory } from "./client.controller.js";
+import {  changePassword, deleteConfirmed, deleteProfile, exploreCategories, findByName, listProducts, productByCategory, viewProfile } from "./client.controller.js";
 import { limiter } from "../../middlewares/rate.limit.js";
 import {updateUser} from "../admin/admin.controller.js"
 import {updateUserValidator} from "../../middlewares/validations.js"
@@ -15,4 +15,5 @@ api.put('/change-profile',[validateJwt,isClient,updateUserValidator,limiter],upd
 api.put('/change-password',[validateJwt,isClient,limiter],changePassword)
 api.get('/delete-profile',[validateJwt,isClient,limiter],deleteProfile)
 api.put('/confirm-delete/:id',[validateJwt,isClient,limiter],deleteConfirmed)
+api.get('/profile',[validateJwt,isClient,limiter],viewProfile)
 export default api

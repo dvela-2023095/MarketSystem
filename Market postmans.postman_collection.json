@@ -658,6 +658,33 @@
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "Ver perfil",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:2636/v1/client/profile",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "2636",
+							"path": [
+								"v1",
+								"client",
+								"profile"
+							]
+						}
+					},
+					"response": []
 				}
 			]
 		},
@@ -1462,6 +1489,37 @@
 							"path": [
 								"v1",
 								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Actualizar bill",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": []
+						},
+						"url": {
+							"raw": "http://localhost:2636/v1/admin/update-bill",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "2636",
+							"path": [
+								"v1",
+								"admin",
+								"update-bill"
 							]
 						}
 					},

@@ -83,3 +83,57 @@ const actualizarStock = async(products)=>{
         
     }
 }
+
+export const updateBill = async(req,res)=>{
+    try {
+        let {product,amount,billId} = req.body
+        if(!product || !amount || !billId) return res.send({success:false,message:'Product, user id or amount dont found in the request'})
+        let bill = await Bill.findById(billId)
+        if(!bill) return res.status(400).send({success:false,message:'Bill not found'})
+        let found = false
+        let err = null
+        let total =bill.total
+        let list = bill.products
+        for(const prod of list){
+            if(prod.product.toString() === product){
+                let oldAmount = prod.amount
+                let p = await Product.findById(product)
+                err = modifyStock(oldAmount,amount,product)
+                if(err===null){
+                    prod.amount = amount
+                    total =total-(p.price *oldAmount)
+                    total = total +(p.price *amount)
+                }
+                found = true
+            }
+        }
+        if(err !== null) return res.send({success:false,message:`The product ${err.name} is out of stock`})
+        if(found === false) return res.send({success:false,message:'Product not found'})
+        bill.total = total
+        await bill.save()
+        return res.send({success:true,message:'Amount changed'})
+    } catch (error) {
+        console.log(error)
+        return res.status(500).send({success:false,message:'General error changing the amount'})
+    }
+}
+
+export const modifyStock = async(oldAmount,newAmount,prodId)=>{
+    try {
+        let prod = await Product.findById(prodId)
+            if((prod.stock +oldAmount) < newAmount){
+                let p ={
+                    id:prod._id,
+                    name:prod.name,
+                    stock:prod.stock,
+                }
+                return p
+            }
+            console.log((prod.stock + oldAmount)-newAmount)
+            prod.stock = (prod.stock + oldAmount)-newAmount
+            await prod.save()
+    } catch (error) {
+        console.error(error)
+        return res.status(500).send({success:false,message:'General error changing the amount'})
+    }
+}
