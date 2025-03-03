@@ -27,7 +27,7 @@ export const confirmPurchase = async (req,res) => {
 export const purchaseHitory = async(req,res)=>{
     try {
         const {skip=0,limit=20} = req.query
-        let bills = await Bill.find({client:req.user.uid}).skip(skip).limit(limit).populate({path:'products.product',select:'-_id name'})
+        let bills = await Bill.find({client:req.user.uid}).skip(skip).limit(limit).populate({path:'client',select:'-_id name'}).populate({path:'products.product',select:'-_id name'})
         if(bills.length===0) return res.status(400).send({success:false,message:'There is not bills to show'})
         return res.send({success:true,message:'Your bills',bills})
     } catch (error) {
