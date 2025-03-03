@@ -1,5 +1,4 @@
 import Bill from "./bill.model.js"
-import User from "../Users/user.model.js"
 import ShopCart from "../shopCart/shop.cart.model.js"
 import Product from "../products/product.model.js"
 export const confirmPurchase = async (req,res) => {
