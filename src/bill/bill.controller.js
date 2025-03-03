@@ -98,7 +98,7 @@ export const updateBill = async(req,res)=>{
             if(prod.product.toString() === product){
                 let oldAmount = prod.amount
                 let p = await Product.findById(product)
-                err = modifyStock(oldAmount,amount,product)
+                err = await  modifyStock(oldAmount,amount,product)
                 if(err===null){
                     prod.amount = amount
                     total =total-(p.price *oldAmount)
@@ -107,6 +107,7 @@ export const updateBill = async(req,res)=>{
                 found = true
             }
         }
+        console.log(err)
         if(err !== null) return res.send({success:false,message:`The product ${err.name} is out of stock`})
         if(found === false) return res.send({success:false,message:'Product not found'})
         bill.total = total
@@ -129,9 +130,9 @@ export const modifyStock = async(oldAmount,newAmount,prodId)=>{
                 }
                 return p
             }
-            console.log((prod.stock + oldAmount)-newAmount)
             prod.stock = (prod.stock + oldAmount)-newAmount
             await prod.save()
+            return null
     } catch (error) {
         console.error(error)
         return res.status(500).send({success:false,message:'General error changing the amount'})
