@@ -5,6 +5,7 @@ export const confirmPurchase = async (req,res) => {
     try {
         let shopCart = await ShopCart.findOne({owner: req.user.uid})
         if(!shopCart) return res.status(400).send({success:false,message:'Shop cart not found'})
+        if(shopCart.products.length ===0) return res.status(400).send({success:false,message:'Shop cart empty'})
         let prodTotal = await crearLista(shopCart.products)
         let bill = new Bill({
             client:req.user.uid,
@@ -74,6 +75,7 @@ const actualizarStock = async(products)=>{
                 return p
             }else{
                 prod.stock = prod.stock - product.amount
+                prod.sales = prod.sales + product.amount
                 await prod.save()
             }
         };
@@ -131,6 +133,7 @@ export const modifyStock = async(oldAmount,newAmount,prodId)=>{
                 return p
             }
             prod.stock = (prod.stock + oldAmount)-newAmount
+            prod.sales = (prod.sales - oldAmount)+newAmount
             await prod.save()
             return null
     } catch (error) {
